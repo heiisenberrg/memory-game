@@ -14,9 +14,24 @@ function HomeStacks() {
       <HomeStack.Screen
         name="Home"
         component={Home}
-        options={{
-          headerShown: false,
-        }}
+        options={ {
+					headerTitle: 'Home',
+					headerTitleAlign: 'center',
+					headerTitleContainerStyle: {
+						alignItems: 'center'
+					},
+					headerStyle: {
+						backgroundColor: '#4B419A',
+						height: 100
+					},
+					headerTitleStyle: {
+						color: 'white',
+						fontWeight: 'bold',
+						fontSize: 28
+					},
+          headerBackTitleVisible: false,
+          headerLeft: false,
+				} }
       />
       <HomeStack.Screen
         name="Game"

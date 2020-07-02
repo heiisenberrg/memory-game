@@ -1,11 +1,50 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, StatusBar} from 'react-native';
 
 class Splash extends React.Component {
+  
+  componentDidMount() {
+    setTimeout(() => {
+      this.props.navigation.navigate('Home');
+    }, 3000)
+  }
+
   render() {
     return (
-      <View>
-        <Text>Splash</Text>
+      <View
+        style={{
+          backgroundColor: '#4B419A',
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <StatusBar translucent={true} backgroundColor="#4B419A" />
+        <Text style={{color: 'white', fontSize: 50}}>
+          Memory Game
+        </Text>
+        <View style={{position: 'absolute', bottom: 40, alignSelf: 'center'}}>
+          <Text
+            style={{
+              textAlign: 'center',
+              color: 'white',
+              fontSize: 12,
+              letterSpacing: 3,
+            }}
+          >
+            FROM
+          </Text>
+          <Text
+            style={{
+              color: 'white',
+              fontSize: 16,
+              textAlign: 'center',
+              letterSpacing: 4,
+            }}
+          >
+            AJAYKKUMAR
+          </Text>
+        </View>
       </View>
     );
   }
