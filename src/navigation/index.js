@@ -10,7 +10,11 @@ const HomeStack = createStackNavigator();
 
 function HomeStacks() {
   return (
-    <HomeStack.Navigator>
+    <HomeStack.Navigator screenOptions={ () => ({
+      gestureEnabled: false,
+      headerTintColor: 'white'
+    }) }
+    initialRouteName="Home">
       <HomeStack.Screen
         name="Home"
         component={Home}
@@ -36,7 +40,26 @@ function HomeStacks() {
       <HomeStack.Screen
         name="Game"
         component={Game}
-        options={{headerShown: false}}
+        options={ {
+					headerTitle: 'Game',
+					headerTitleAlign: 'center',
+					headerTitleContainerStyle: {
+						alignItems: 'center'
+					},
+					headerStyle: {
+						backgroundColor: '#4B419A',
+						height: 100
+					},
+					headerTitleStyle: {
+						color: 'white',
+						fontWeight: 'bold',
+						fontSize: 28
+					},
+          headerBackTitleVisible: false,
+          headerBackTitleStyle: {
+            backgroundColor: 'white',
+          }
+				} }
       />
     </HomeStack.Navigator>
   );

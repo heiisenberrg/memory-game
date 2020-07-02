@@ -3,9 +3,13 @@ import {View, FlatList, Text, TouchableOpacity} from 'react-native';
 
 class Home extends React.Component {
 
+  navigateToGame = item => {
+    this.props.navigation.navigate('Game');
+  }
+
   renderItem = ({item, index}) => {
     return (
-      <TouchableOpacity key={index} style={{ borderWidth: 0.5, borderColor: '#4B419A', borderRadius: 5, padding: 10, justifyContent: 'center', alignItems: 'center', marginBottom: 15}}>
+      <TouchableOpacity key={index} style={{ borderWidth: 0.5, borderColor: '#4B419A', borderRadius: 5, padding: 10, justifyContent: 'center', alignItems: 'center', marginBottom: 15}} onPress={() => this.navigateToGame(item)}>
         <Text style={{fontSize: 24, color: '#4B419A'}}>Level {item}</Text>
       </TouchableOpacity>
     )
