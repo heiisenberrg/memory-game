@@ -19,7 +19,7 @@ class Modal extends React.PureComponent {
                   <Text style={{color: '#4B419A', fontSize: 24, fontWeight: 'bold'}}>Congratulations!</Text>
                   <Text style={{paddingVertical: 10}}>You have completed this level {level} in {moves} moves</Text>
                   <Text style={{paddingVertical: 10}}>Your Score: {score}</Text>
-                  <TouchableOpacity style={{paddingVertical: 10, paddingHorizontal: 20, backgroundColor: '#4B419A', borderRadius: 5, marginVertical: 10}}>
+                  <TouchableOpacity style={{paddingVertical: 10, paddingHorizontal: 20, backgroundColor: '#4B419A', borderRadius: 5, marginVertical: 10}} onPress={() => this.props.proccedLevel('success')}>
                     <Text style={{ fontSize: 20, fontWeight: 'bold', color: 'white'}}>Procced</Text>
                   </TouchableOpacity>
                 </View>
@@ -27,7 +27,7 @@ class Modal extends React.PureComponent {
                 <View style={{ justifyContent: 'center', alignItems: 'center'}}>
                   <Text style={{color: '#ff1e46', fontSize: 24, fontWeight: 'bold'}}>Failure!</Text>
                   <Text style={{paddingVertical: 10}}>Try again this level to procced to next level</Text>
-                  <TouchableOpacity style={{paddingVertical: 10, paddingHorizontal: 20, backgroundColor: '#ff1e46', borderRadius: 5, marginVertical: 10}}>
+                  <TouchableOpacity style={{paddingVertical: 10, paddingHorizontal: 20, backgroundColor: '#ff1e46', borderRadius: 5, marginVertical: 10}} onPress={() => this.props.proccedLevel('failure')}>
                     <Text style={{ fontSize: 20, fontWeight: 'bold', color: 'white'}}>Retry</Text>
                   </TouchableOpacity>
                 </View>

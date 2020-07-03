@@ -74,6 +74,11 @@ const initialState = {
           ...state,
           currentLevel: action.data
         }
+      case constants.SET_GAME_DATA: 
+        return {
+          ...state,
+          levels: action.data
+        }
       default:
         return state;
     }

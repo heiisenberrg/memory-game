@@ -12,7 +12,7 @@ class Home extends React.Component {
 
   renderItem = ({item, index}) => {
     return (
-      <TouchableOpacity key={index} style={{ borderWidth: 0.5, borderColor: '#4B419A', borderRadius: 5, padding: 10, justifyContent: 'center', alignItems: 'center', marginBottom: 15}} onPress={() => this.navigateToGame(item)}>
+      <TouchableOpacity activeOpacity={0.7} key={index} disabled={item !== 1 ? !this.props.levels[item].isCompleted : false} style={{ backgroundColor: (item !== 1 ? !this.props.levels[item].isCompleted : false) ? '#e0e0e0' : 'transparent', borderWidth: 0.5, borderColor: '#4B419A', borderRadius: 5, padding: 10, justifyContent: 'center', alignItems: 'center', marginBottom: 15}} onPress={() => this.navigateToGame(item)}>
         <Text style={{fontSize: 24, color: '#4B419A'}}>Level {item}</Text>
       </TouchableOpacity>
     )
