@@ -1,8 +1,8 @@
 import React from 'react';
-import {View, Text, StatusBar} from 'react-native';
+import { View, Text, StatusBar } from 'react-native';
 
 class Splash extends React.Component {
-  
+
   componentDidMount() {
     setTimeout(() => {
       this.props.navigation.navigate('Home');
@@ -19,11 +19,10 @@ class Splash extends React.Component {
           alignItems: 'center',
         }}
       >
-        <StatusBar translucent={true} backgroundColor="#4B419A" />
-        <Text style={{color: 'white', fontSize: 50}}>
+        <Text style={{ color: 'white', fontSize: 50 }}>
           Memory Game
         </Text>
-        <View style={{position: 'absolute', bottom: 40, alignSelf: 'center'}}>
+        <View style={{ position: 'absolute', bottom: 40, alignSelf: 'center' }}>
           <Text
             style={{
               textAlign: 'center',
