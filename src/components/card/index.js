@@ -1,5 +1,5 @@
 import React from "react";
-import { View, TouchableOpacity, Animated, Text } from "react-native";
+import { View, TouchableOpacity, Animated, Text, StyleSheet } from "react-native";
 
 class Card extends React.Component {
   constructor(props) {
@@ -42,15 +42,15 @@ class Card extends React.Component {
 
   renderBackCard = () => {
     return (
-      <View style={{ height: this.props.height, width: this.props.width, transform: [{ scaleX: 1 }], borderRadius: 5, borderWidth: 1, elevation: 3, borderColor: '#4B419A', justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#4B419A' }}>{this.props.item}</Text>
+      <View style={{ height: this.props.height, width: this.props.width, transform: [{ scaleX: 1 }], ...styles.backContainer }}>
+        <Text style={styles.backText}>{this.props.item}</Text>
       </View>
     )
   }
 
   renderFrontCard = () => {
     return (
-      <View style={{ height: this.props.height, width: this.props.width, borderRadius: 5, borderWidth: 1, elevation: 3, borderColor: '#4B419A', justifyContent: 'center', alignItems: 'center', backgroundColor: '#4B419A' }} />
+      <View style={{ height: this.props.height, width: this.props.width, ...styles.frontContainer }} />
     )
   }
 
@@ -59,7 +59,7 @@ class Card extends React.Component {
     const { rotate } = this.state;
     return (
       <TouchableOpacity activeOpacity={1} onPress={() => this.setSelectedIndex()}>
-        <Animated.View style={[{ transform: [{ rotateY: rotate.interpolate({ inputRange: [0, 1], outputRange: ['0deg', '180deg'] }) }], marginRight: 10 }]}>
+        <Animated.View style={[{ transform: [{ rotateY: rotate.interpolate({ inputRange: [0, 1], outputRange: ['0deg', '180deg'] }) }], ...styles.mr10 }]}>
           {isFlipped && this.renderBackCard()}
           {!isFlipped && this.renderFrontCard()}
         </Animated.View>
@@ -69,3 +69,29 @@ class Card extends React.Component {
 }
 
 export default Card;
+
+const styles = StyleSheet.create({
+  mr10: {
+    marginRight: 10
+  },
+  frontContainer: {
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: '#4B419A',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#4B419A'
+  },
+  backContainer: {
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: '#4B419A',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  backText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#4B419A'
+  }
+})

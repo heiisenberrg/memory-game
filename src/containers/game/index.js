@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Card from '../../components/card';
 import Modal from '../../components/modal';
 import CountDownTimer from '../../components/timer';
-import { View, Text, FlatList, Dimensions } from 'react-native';
+import { View, Text, FlatList, Dimensions, StyleSheet } from 'react-native';
 import { setGameLevel, updateGameData } from '../../store/actions/game.action';
 
 const { width } = Dimensions.get('window');
@@ -99,7 +99,10 @@ class Game extends React.PureComponent {
     } else {
       this.setState(initialeState);
       if (type === 'goback') {
-        this.props.navigation.goback();
+        let data = { ...this.props.levels };
+        data[this.props.currentLevel].isCompleted = true;
+        this.props.updateGameData(data);
+        this.props.navigation.goBack();
       }
     }
   }
@@ -122,19 +125,19 @@ class Game extends React.PureComponent {
     const { data, numberOfColumns, showModal, gameStatus, score, moves, resetTimer, stopTimer } = this.state;
     const { currentLevel } = this.props;
     return (
-      <View style={{ flex: 1 }}>
-        <View style={{ paddingVertical: 15, marginHorizontal: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-          <View style={{ alignItems: 'center' }}>
-            <Text style={{ fontSize: 20, fontWeight: '700', color: '#4B419A' }}>Level</Text>
+      <View style={styles.flex}>
+        <View style={styles.levelContainer}>
+          <View style={styles.alignCenter}>
+            <Text style={styles.headerText}>Level</Text>
             <Text>{currentLevel}</Text>
           </View>
-          <View style={{ alignItems: 'center' }}>
-            <Text style={{ fontSize: 20, fontWeight: '700', color: '#4B419A' }}>Score</Text>
+          <View style={styles.alignCenter}>
+            <Text style={styles.headerText}>Score</Text>
             <Text>{score}</Text>
           </View>
         </View>
-        <View style={{ alignItems: 'center' }}>
-          <Text style={{ fontSize: 20, fontWeight: '700', color: '#4B419A' }}>Time Left</Text>
+        <View style={styles.alignCenter}>
+          <Text style={styles.headerText}>Time Left</Text>
           <CountDownTimer timesUp={() => this.timesUp()} resetTimer={resetTimer} stopTimer={stopTimer} />
         </View>
         <FlatList
@@ -145,9 +148,18 @@ class Game extends React.PureComponent {
           renderItem={this.renderItem}
           keyExtractor={(item) => `level${item}`}
           ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
-          contentContainerStyle={{ marginTop: 50, marginHorizontal: 20, justifyContent: 'center', alignItems: 'center' }}
+          contentContainerStyle={styles.flatlistContainer}
+          showsVerticalScrollIndicator={false}
         />
-        {showModal && <Modal visible={showModal} status={gameStatus} level={currentLevel} score={score} moves={moves} proccedLevel={(type) => this.proccedLevel(type)} />}
+        {showModal &&
+          <Modal
+            visible={showModal}
+            status={gameStatus}
+            level={currentLevel}
+            score={score}
+            moves={moves}
+            proccedLevel={(type) => this.proccedLevel(type)}
+          />}
       </View>
     );
   }
@@ -164,3 +176,29 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);
+
+const styles = StyleSheet.create({
+  flex: {
+    flex: 1
+  },
+  levelContainer: {
+    paddingVertical: 15,
+    marginHorizontal: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  alignCenter: {
+    alignItems: 'center'
+  },
+  headerText: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#4B419A'
+  },
+  flatlistContainer: {
+    padding: 20,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+});

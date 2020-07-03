@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StatusBar } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 class Splash extends React.Component {
 
@@ -11,38 +11,11 @@ class Splash extends React.Component {
 
   render() {
     return (
-      <View
-        style={{
-          backgroundColor: '#4B419A',
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Text style={{ color: 'white', fontSize: 50 }}>
-          Memory Game
-        </Text>
-        <View style={{ position: 'absolute', bottom: 40, alignSelf: 'center' }}>
-          <Text
-            style={{
-              textAlign: 'center',
-              color: 'white',
-              fontSize: 12,
-              letterSpacing: 3,
-            }}
-          >
-            FROM
-          </Text>
-          <Text
-            style={{
-              color: 'white',
-              fontSize: 16,
-              textAlign: 'center',
-              letterSpacing: 4,
-            }}
-          >
-            AJAYKKUMAR
-          </Text>
+      <View style={styles.container}>
+        <Text style={styles.appName}>Memory Game</Text>
+        <View style={styles.absoluteContainer}>
+          <Text style={styles.fromText}>FROM</Text>
+          <Text style={styles.developerName}>AJAYKKUMAR</Text>
         </View>
       </View>
     );
@@ -50,3 +23,33 @@ class Splash extends React.Component {
 }
 
 export default Splash;
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#4B419A',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  appName: {
+    color: 'white',
+    fontSize: 50
+  },
+  absoluteContainer: {
+    position: 'absolute',
+    bottom: 40,
+    alignSelf: 'center'
+  },
+  fromText: {
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 12,
+    letterSpacing: 3,
+  },
+  developerName: {
+    color: 'white',
+    fontSize: 16,
+    textAlign: 'center',
+    letterSpacing: 4,
+  }
+})
