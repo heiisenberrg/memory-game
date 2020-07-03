@@ -1,9 +1,12 @@
 import React from 'react';
 import {View, FlatList, Text, TouchableOpacity} from 'react-native';
+import {setGameLevel} from '../../store/actions/game.action';
+import { connect } from 'react-redux';
 
 class Home extends React.Component {
 
   navigateToGame = item => {
+    this.props.setGameLevel(item);
     this.props.navigation.navigate('Game');
   }
 
@@ -14,6 +17,7 @@ class Home extends React.Component {
       </TouchableOpacity>
     )
   }
+
   render() {
     return (
       <View style={{flex: 1}}>
@@ -28,4 +32,12 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+const mapStateToProps = state => ({
+  levels: state.game.levels
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setGameLevel: data => dispatch(setGameLevel(data))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

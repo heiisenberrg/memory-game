@@ -8,7 +8,7 @@ const Main = createStackNavigator();
 
 const HomeStack = createStackNavigator();
 
-function HomeStacks() {
+function HomeStacks(props) {
   return (
     <HomeStack.Navigator screenOptions={ () => ({
       gestureEnabled: false,
